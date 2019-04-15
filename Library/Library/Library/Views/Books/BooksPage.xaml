@@ -1,16 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:books="clr-namespace:Library.Core.ViewModels.Books"
              x:Class="Library.Core.Views.Books.BooksPage"
              Title="Books">
 
-    <ContentPage.BindingContext>
-        <books:BooksPageViewModel/>
-    </ContentPage.BindingContext>
-
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="outline_add_white_18.png" Text="Add Book" Command="{Binding AddBookCommand}"/>
+        <ToolbarItem Icon="outline_add_white_24.png" Text="Add Book" Command="{Binding AddBookCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

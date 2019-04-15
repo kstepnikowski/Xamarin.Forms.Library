@@ -1,5 +1,7 @@
 ﻿using Library.Core.ViewModels;
+using Library.Core.ViewModels.Books;
 using Library.Core.Views;
+using Library.Core.Views.Books;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Forms;
@@ -33,6 +35,8 @@ namespace Library
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomePage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<BooksPage,BooksPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddBookPage,AddBookPageViewModel>();
         }
 
         protected override void OnStart()
