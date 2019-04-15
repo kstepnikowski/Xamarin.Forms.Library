@@ -4,6 +4,9 @@ using Library.ViewModels;
 using Library.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Library
@@ -30,6 +33,14 @@ namespace Library
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+        }
+
+        protected override async void OnStart()
+        {
+            AppCenter.Start("android=15702a58-04b1-4fa5-8dee-8308fc2635d6;" +
+                            "uwp={Your UWP App secret here};" +
+                            "ios={Your iOS App secret here}",
+                typeof(Analytics), typeof(Crashes));
         }
     }
 }
