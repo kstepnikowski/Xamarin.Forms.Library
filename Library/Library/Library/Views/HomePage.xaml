@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="Library.Core.Views.HomePage"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:rateBooks="clr-namespace:Library.Core.Views.RateBooks;assembly=Library.Core"
+            xmlns:readBooks="clr-namespace:Library.Core.Views.ReadBooks;assembly=Library.Core"
+            xmlns:books="clr-namespace:Library.Core.Views.Books;assembly=Library.Core"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            BarBackgroundColor="{OnPlatform Android=White}">
+
+    <NavigationPage Title="Books" Icon="outline_book_black_18.png">
+        <x:Arguments>
+            <books:BooksPage />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Rate" Icon="outline_star_rate_black_18.png">
+        <x:Arguments>
+            <rateBooks:RateBooksPage />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="To Read" Icon="outline_done_black_18.png">
+        <x:Arguments>
+            <readBooks:ReadBooksPage />
+        </x:Arguments>
+    </NavigationPage>
+
+</TabbedPage>

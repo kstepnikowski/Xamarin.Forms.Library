@@ -1,7 +1,7 @@
-﻿using Prism;
+﻿using Library.Core.ViewModels;
+using Library.Core.Views;
+using Prism;
 using Prism.Ioc;
-using Library.ViewModels;
-using Library.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter;
@@ -26,16 +26,16 @@ namespace Library
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage, MainPageViewModel>();
         }
 
-        protected override async void OnStart()
+        protected override void OnStart()
         {
             AppCenter.Start("android=15702a58-04b1-4fa5-8dee-8308fc2635d6;" +
                             "uwp={Your UWP App secret here};" +
