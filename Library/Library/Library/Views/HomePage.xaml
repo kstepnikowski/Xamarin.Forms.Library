@@ -5,8 +5,8 @@
             x:Class="Library.Core.Views.HomePage"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:rateBooks="clr-namespace:Library.Core.Views.RateBooks;assembly=Library.Core"
-            xmlns:readBooks="clr-namespace:Library.Core.Views.ReadBooks;assembly=Library.Core"
             xmlns:books="clr-namespace:Library.Core.Views.Books;assembly=Library.Core"
+            xmlns:toReadBooks="clr-namespace:Library.Core.Views.ToReadBooks;assembly=Library.Core"
             android:TabbedPage.IsSwipePagingEnabled="False"
             BarBackgroundColor="{OnPlatform Android=White}">
 
@@ -24,7 +24,7 @@
 
     <NavigationPage Title="To Read" Icon="outline_done_black_18.png">
         <x:Arguments>
-            <readBooks:ReadBooksPage />
+            <toReadBooks:ReadBooksPage />
         </x:Arguments>
     </NavigationPage>
 

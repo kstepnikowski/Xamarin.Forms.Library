@@ -25,9 +25,14 @@
     <EmbeddedResource Update="Views\RateBooks\RateBooksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ReadBooks\ReadBooksPage.xaml">
+    <EmbeddedResource Update="Views\ToReadBooks\ReadBooksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\ToReadBooks\" />
+    <Folder Include="ViewModels\RateBooks\" />
   </ItemGroup>
 
 </Project>
