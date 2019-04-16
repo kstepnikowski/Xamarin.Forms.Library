@@ -1,10 +1,10 @@
-﻿using Realms;
+﻿using SQLite;
 
 namespace Library.DataAccess.Entities
 {
-    public class BookEntity : RealmObject
+    public class BookEntity
     {
-        [PrimaryKey]
+        [PrimaryKey,AutoIncrement]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
@@ -13,6 +13,11 @@ namespace Library.DataAccess.Entities
         {
             Title = title;
             Author = author;
+        }
+
+        public BookEntity()
+        {
+            
         }
     }
 }

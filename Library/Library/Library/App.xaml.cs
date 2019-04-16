@@ -34,11 +34,14 @@ namespace Library
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            //RegisterForNavigation
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<HomePage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<BooksPage,BooksPageViewModel>();
             containerRegistry.RegisterForNavigation<AddBookPage,AddBookPageViewModel>();
-            containerRegistry.Register<IBooksRepository,BooksRepository>();
+
+            //Register Types
+            containerRegistry.Register<IBooksRepository,BooksDbRepository>();
         }
 
         protected override void OnStart()

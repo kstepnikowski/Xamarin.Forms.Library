@@ -24,7 +24,7 @@
 
     <NavigationPage Title="To Read" Icon="outline_done_black_18.png">
         <x:Arguments>
-            <toReadBooks:ReadBooksPage />
+            <toReadBooks:ToReadBooksPage />
         </x:Arguments>
     </NavigationPage>
 

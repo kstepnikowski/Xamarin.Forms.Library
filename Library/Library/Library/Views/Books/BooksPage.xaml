@@ -1,18 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Library.Core.Converters;assembly=Library.Core"
              x:Class="Library.Core.Views.Books.BooksPage"
-             Title="Books">
+             Title="Books"
+             Visual="Material">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToNotBoolConverter x:Key="BoolToNotBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="outline_add_white_24.png" Text="Add Book" Command="{Binding AddBookCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Books"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+
+        <Label Text="Empty list" IsVisible="{Binding IsInfoVisible}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+
+            <ListView ItemsSource="{Binding Books}" IsVisible="{Binding IsInfoVisible, Converter={StaticResource BoolToNotBoolConverter}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{Binding Title}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding Author}"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End" />
+                        </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>

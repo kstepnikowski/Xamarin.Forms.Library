@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Library.Core.ViewModels.Books;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Library.Core.Views.Books
@@ -10,5 +11,11 @@ namespace Library.Core.Views.Books
 		{
 			InitializeComponent ();
 		}
+
+	    protected override void OnAppearing()
+	    {
+	        base.OnAppearing();
+            (BindingContext as BooksPageViewModel)?.GetBooks();
+	    }
 	}
 }

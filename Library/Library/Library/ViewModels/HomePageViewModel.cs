@@ -2,9 +2,9 @@
 
 namespace Library.Core.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class HomePageViewModel : ViewModelBase
     {
-        public MainPageViewModel(INavigationService navigationService)
+        public HomePageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
         }
