@@ -14,5 +14,10 @@ namespace Library.DataAccess.Entities
             Title = title;
             Author = author;
         }
+
+        public BookEntity()
+        {
+            
+        }
     }
 }

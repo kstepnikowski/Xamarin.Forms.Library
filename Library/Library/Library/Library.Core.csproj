@@ -16,6 +16,9 @@
     <Compile Update="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ToReadBooks\ToReadBooksPage.xaml.cs">
+      <DependentUpon>ToReadBooksPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +31,7 @@
     <EmbeddedResource Update="Views\RateBooks\RateBooksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ToReadBooks\ReadBooksPage.xaml">
+    <EmbeddedResource Update="Views\ToReadBooks\ToReadBooksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -36,6 +39,10 @@
   <ItemGroup>
     <Folder Include="ViewModels\ToReadBooks\" />
     <Folder Include="ViewModels\RateBooks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library.DataAccess\Library.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

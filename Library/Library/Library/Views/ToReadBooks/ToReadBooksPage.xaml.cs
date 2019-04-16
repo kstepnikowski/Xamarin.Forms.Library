@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace Library.Core.Views.ToReadBooks
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ReadBooksPage : ContentPage
+	public partial class ToReadBooksPage : ContentPage
 	{
-		public ReadBooksPage ()
+		public ToReadBooksPage ()
 		{
 			InitializeComponent ();
 		}
