@@ -2,7 +2,9 @@
 using Library.Core.ViewModels.Books;
 using Library.Core.Views;
 using Library.Core.Views.Books;
+using Library.DataAccess.Entities;
 using Library.DataAccess.Repositories.BookRepository;
+using Library.PlatformServices;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Forms;
@@ -10,6 +12,9 @@ using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Prism.Unity;
+using Unity;
+using Unity.Injection;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Library
@@ -29,7 +34,7 @@ namespace Library
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("HomePage");
+            await NavigationService.NavigateAsync("NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -39,9 +44,11 @@ namespace Library
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<BooksPage,BooksPageViewModel>();
             containerRegistry.RegisterForNavigation<AddBookPage,AddBookPageViewModel>();
-
             //Register Types
-            containerRegistry.Register<IBooksRepository,BooksDbRepository>();
+            var databaseService = containerRegistry.GetContainer().Resolve<IDatabaseService>();
+            databaseService.Connection.CreateTable<BookEntity>();
+
+            containerRegistry.GetContainer().RegisterType<IBooksRepository, BooksDbRepository>();
         }
 
         protected override void OnStart()
