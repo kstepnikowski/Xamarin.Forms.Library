@@ -1,5 +1,7 @@
 ﻿using System.Windows.Input;
 using Library.Core.Views;
+using Library.DataAccess.Entities;
+using Library.DataAccess.Repositories.BookRepository;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -39,8 +41,11 @@ namespace Library.Core.ViewModels.Books
    
         public ICommand AddBookCommand { get; }
 
-        public AddBookPageViewModel(INavigationService navigationService) : base(navigationService)
+        private readonly IBooksRepository _booksRepository;
+
+        public AddBookPageViewModel(INavigationService navigationService, IBooksRepository booksRepository) : base(navigationService)
         {
+            _booksRepository = booksRepository;
             AddBookCommand = new DelegateCommand(AddBookCmd);
         }
 
@@ -51,6 +56,8 @@ namespace Library.Core.ViewModels.Books
 
         private void AddBookCmd()
         {
+            var book = new BookEntity(Title, Author);
+            _booksRepository.Add(book);
             NavigationService.NavigateAsync(nameof(HomePage));
         }
     }

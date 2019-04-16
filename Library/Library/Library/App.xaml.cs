@@ -2,6 +2,7 @@
 using Library.Core.ViewModels.Books;
 using Library.Core.Views;
 using Library.Core.Views.Books;
+using Library.DataAccess.Repositories.BookRepository;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Forms;
@@ -37,6 +38,7 @@ namespace Library
             containerRegistry.RegisterForNavigation<HomePage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<BooksPage,BooksPageViewModel>();
             containerRegistry.RegisterForNavigation<AddBookPage,AddBookPageViewModel>();
+            containerRegistry.Register<IBooksRepository,BooksRepository>();
         }
 
         protected override void OnStart()
