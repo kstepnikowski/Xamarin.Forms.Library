@@ -1,8 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Library.Droid.Services;
-using Library.PlatformServices;
+using Library.Core;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Forms;
@@ -19,7 +18,7 @@ namespace Library.Droid
 
             base.OnCreate(bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
             FormsMaterial.Init(this, bundle);
         }
@@ -30,7 +29,6 @@ namespace Library.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
-            containerRegistry.Register<IDatabaseService,DatabaseService>();
         }
     }
 }

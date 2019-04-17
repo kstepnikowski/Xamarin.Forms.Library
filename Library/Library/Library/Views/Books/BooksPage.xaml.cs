@@ -1,5 +1,4 @@
-﻿using Library.Core.ViewModels.Books;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Library.Core.Views.Books
@@ -10,12 +9,7 @@ namespace Library.Core.Views.Books
 		public BooksPage ()
 		{
 			InitializeComponent ();
+		    BooksListView.ItemSelected += (e, sender) => BooksListView.SelectedItem = null;
 		}
-
-	    protected override void OnAppearing()
-	    {
-	        base.OnAppearing();
-            (BindingContext as BooksPageViewModel)?.GetBooks();
-	    }
 	}
 }

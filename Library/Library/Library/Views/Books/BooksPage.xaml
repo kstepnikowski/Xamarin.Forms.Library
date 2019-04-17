@@ -21,7 +21,7 @@
 
         <Label Text="Empty list" IsVisible="{Binding IsInfoVisible}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
 
-            <ListView ItemsSource="{Binding Books}" IsVisible="{Binding IsInfoVisible, Converter={StaticResource BoolToNotBoolConverter}}">
+            <ListView x:Name="BooksListView" ItemsSource="{Binding Books}" IsVisible="{Binding IsInfoVisible, Converter={StaticResource BoolToNotBoolConverter}}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

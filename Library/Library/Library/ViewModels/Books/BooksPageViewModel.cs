@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using Library.Core.Views.Books;
 using Library.DataAccess.Entities;
-using Library.DataAccess.Repositories.BookRepository;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -26,24 +25,36 @@ namespace Library.Core.ViewModels.Books
 
         public ICommand AddBookCommand { get; }
 
-        private readonly IBooksRepository _booksRepository;
+        //private readonly IBooksRepository _booksRepository;
 
-        public BooksPageViewModel(INavigationService navigationService, IBooksRepository booksRepository) : base(navigationService)
+        public BooksPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            _booksRepository = booksRepository;
+            //_booksRepository = booksRepository;
             AddBookCommand = new DelegateCommand(OnAddBookCmd);
+            GetBooks();
         }
 
-        public async void GetBooks()
+        private void GetBooks()
         {
-            var books = await _booksRepository.GetAll();
-            Books = books ?? new List<BookEntity>();
+            //var books = await _booksRepository.GetAll();
+            Books = GetMockData();
             IsInfoVisible = Books.Count==0;
         }
 
         private void OnAddBookCmd()
         {
             NavigationService.NavigateAsync(nameof(AddBookPage));
+        }
+
+        //Mock Data
+        private List<BookEntity> GetMockData()
+        {
+            return new List<BookEntity>
+            {
+                new BookEntity("Pan Tadeusz","Adam Mickiewicz"),
+                new BookEntity("Potop","Henryk Sienkiewicz"),
+                new BookEntity("Przedwiośnie","Stefan Żeromski"),
+            };
         }
     }
 }
