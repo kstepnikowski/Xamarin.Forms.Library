@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Library.DataAccess.Entities;
 
 namespace Library.DataAccess.Services
 {
     public class MockBooksService : IBooksService
     {
-        private readonly List<BookEntity> _books;
+        private readonly ObservableCollection<BookEntity> _books;
 
         public MockBooksService()
         {
-            _books = new List<BookEntity>
+            _books = new ObservableCollection<BookEntity>
             {
                 new BookEntity("Pan Tadeusz","Adam Mickiewicz"),
                 new BookEntity("Potop","Henryk Sienkiewicz"),
@@ -23,12 +25,12 @@ namespace Library.DataAccess.Services
 
         public void RemoveBook(int id)
         {
-            var book = _books.Find(x => x.Id == id);
+            var book = _books.First(x => x.Id == id);
             _books.Remove(book);
 
         }
 
-        public List<BookEntity> GetAll()
+        public ObservableCollection<BookEntity> GetAll()
         {
             return _books;
         }

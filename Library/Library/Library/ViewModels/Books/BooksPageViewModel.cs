@@ -14,8 +14,8 @@ namespace Library.Core.ViewModels.Books
 {
     public class BooksPageViewModel : ViewModelBase
     {
-        private List<BookEntity> _books;
-        public List<BookEntity> Books
+        private ObservableCollection<BookEntity> _books;
+        public ObservableCollection<BookEntity> Books
         {
             get => _books;
             set => SetProperty(ref _books, value);

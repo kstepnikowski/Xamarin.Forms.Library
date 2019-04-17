@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using Library.DataAccess.Entities;
 
 namespace Library.DataAccess.Services
@@ -7,6 +7,6 @@ namespace Library.DataAccess.Services
     {
         void AddBook(BookEntity book);
         void RemoveBook(int id);
-        List<BookEntity> GetAll();
+        ObservableCollection<BookEntity> GetAll();
     }
 }
