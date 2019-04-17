@@ -4,6 +4,7 @@
              xmlns:converters="clr-namespace:Library.Core.Converters;assembly=Library.Core"
              x:Class="Library.Core.Views.Books.BooksPage"
              Title="Books"
+             x:Name="ContentPage"
              Visual="Material">
 
     <ContentPage.Resources>
@@ -25,6 +26,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding Source={x:Reference ContentPage}, Path=BindingContext.RemoveBookCommand}" CommandParameter="{Binding .}" Icon="baseline_delete_white_18.png"/>
+                            </ViewCell.ContextActions>
                             <Grid Padding="10">
                                 <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />

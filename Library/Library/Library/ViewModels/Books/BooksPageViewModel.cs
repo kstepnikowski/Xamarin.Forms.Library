@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Library.Core.Views.Books;
 using Library.DataAccess.Entities;
+using Library.DataAccess.Services;
 using Prism.Commands;
 using Prism.Navigation;
+using Prism.Services;
 
 namespace Library.Core.ViewModels.Books
 {
@@ -24,37 +29,41 @@ namespace Library.Core.ViewModels.Books
         }
 
         public ICommand AddBookCommand { get; }
+        public ICommand RemoveBookCommand { get; }
 
-        //private readonly IBooksRepository _booksRepository;
+        private readonly IPageDialogService _pageDialogService;
+        private readonly IBooksService _booksService;
 
-        public BooksPageViewModel(INavigationService navigationService) : base(navigationService)
+        public BooksPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IBooksService booksService) : base(navigationService)
         {
-            //_booksRepository = booksRepository;
-            AddBookCommand = new DelegateCommand(OnAddBookCmd);
+            _pageDialogService = pageDialogService;
+            _booksService = booksService;
+            AddBookCommand = new DelegateCommand<BookEntity>(OnAddBookCmd);
+            RemoveBookCommand = new DelegateCommand<BookEntity>(OnRemoveBookCmd);
+            GetBooks();
+        }
+
+        private void OnAddBookCmd(BookEntity book)
+        {
+            NavigationService.NavigateAsync(nameof(AddBookPage));
+        }
+
+        private async void OnRemoveBookCmd(BookEntity book)
+        {
+            var result = await _pageDialogService.DisplayAlertAsync("Usuń książkę",
+                $"Czy chcesz usunąć książkę {book.Title}?", "Tak", "Nie");
+
+            if(!result)
+                return;
+
+            _booksService.RemoveBook(book.Id);
             GetBooks();
         }
 
         private void GetBooks()
         {
-            //var books = await _booksRepository.GetAll();
-            Books = GetMockData();
-            IsInfoVisible = Books.Count==0;
-        }
-
-        private void OnAddBookCmd()
-        {
-            NavigationService.NavigateAsync(nameof(AddBookPage));
-        }
-
-        //Mock Data
-        private List<BookEntity> GetMockData()
-        {
-            return new List<BookEntity>
-            {
-                new BookEntity("Pan Tadeusz","Adam Mickiewicz"),
-                new BookEntity("Potop","Henryk Sienkiewicz"),
-                new BookEntity("Przedwiośnie","Stefan Żeromski"),
-            };
+            Books = _booksService.GetAll();
+            IsInfoVisible = Books.Count == 0;
         }
     }
 }

@@ -2,6 +2,7 @@
 using Library.Core.ViewModels.Books;
 using Library.Core.Views;
 using Library.Core.Views.Books;
+using Library.DataAccess.Services;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -40,7 +41,7 @@ namespace Library.Core
             containerRegistry.RegisterForNavigation<AddBookPage,AddBookPageViewModel>();
             
             //Register Types
-
+            containerRegistry.RegisterSingleton<IBooksService,MockBooksService>();
         }
 
         protected override void OnStart()
